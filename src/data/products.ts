@@ -42,7 +42,8 @@ export const INITIAL_PRODUCTS: Product[] = [
     category: 'Furniture',
     rating: 4.5,
     stock: 5,
-    imageUrl: 'https://images.unsplash.com/photo-1580481072645-022f9a6d83d0?w=600&auto=format&fit=crop&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&auto=format&fit=crop&q=80',
+
     badge: 'Ergonomic'
   },
   {

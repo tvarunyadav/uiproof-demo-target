@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Search, SlidersHorizontal, AlertTriangle } from 'lucide-react';
+import { Search, SlidersHorizontal, CheckCircle2 } from 'lucide-react';
 import type { Product } from '../types';
-
+import heroImage from '../assets/hero.png';
 import { ProductCard } from './ProductCard';
 
 interface StoreViewProps {
@@ -23,7 +23,7 @@ export const StoreView: React.FC<StoreViewProps> = ({ products, onAddToCart }) =
   });
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 max-w-full">
       {/* Top Banner introducing the Controlled QA Target */}
       <div className="p-6 rounded-2xl bg-gradient-to-r from-indigo-950/80 via-purple-950/50 to-gray-900 border border-indigo-500/30 backdrop-blur-xl flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-2xl">
         <div>
@@ -31,50 +31,48 @@ export const StoreView: React.FC<StoreViewProps> = ({ products, onAddToCart }) =
             Hardware & Tech Product Catalog
           </h1>
           <p className="text-sm text-gray-300 max-w-2xl">
-            CONTROLLED QA FIXTURE — This website intentionally contains known defects for validating UIProof AI.
+            CONTROLLED QA FIXTURE — Retest & Verified Version 2.0 (All baseline audit defects resolved).
           </p>
         </div>
         <div className="flex items-center space-x-3 shrink-0">
-          <div className="px-4 py-2.5 rounded-xl bg-amber-950/60 border border-amber-500/40 text-amber-300 text-xs font-mono flex items-center space-x-2">
-            <AlertTriangle className="w-4 h-4 text-amber-400" />
-            <span>4 Controlled Audit Fixtures</span>
+          <div className="px-4 py-2.5 rounded-xl bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 text-xs font-mono flex items-center space-x-2">
+            <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+            <span>4 Resolved Audit Fixtures</span>
           </div>
         </div>
       </div>
 
-      {/* DEF-002: MOBILE HORIZONTAL OVERFLOW FIXTURE */}
-      {/* w-[480px] fits safely inside 1440px desktop grid, but exceeds 390px mobile viewport */}
-      <div className="flex justify-start">
+      {/* DEF-002: MOBILE HORIZONTAL OVERFLOW FIX (Replaced fixed w-[480px] with responsive w-full max-w-full) */}
+      <div className="flex justify-start max-w-full">
         <div
           data-uiproof-fixture="mobile-overflow"
-          className="w-[480px] p-4 rounded-xl bg-indigo-950/40 border border-indigo-500/30 text-xs text-indigo-300 flex items-center space-x-3"
+          className="w-full max-w-full p-4 rounded-xl bg-emerald-950/40 border border-emerald-500/30 text-xs text-emerald-300 flex items-center space-x-3"
         >
-          <div className="p-2 rounded-lg bg-indigo-600/30 text-indigo-300 font-mono font-bold shrink-0">
+          <div className="p-2 rounded-lg bg-emerald-600/30 text-emerald-300 font-mono font-bold shrink-0">
             DEF-002
           </div>
           <div>
-            <strong className="text-white block">Controlled Mobile Overflow Banner</strong>
-            <span>Fixed 480px container width (causes document.scrollWidth &gt; 390px on mobile).</span>
+            <strong className="text-white block">Mobile Responsive Banner</strong>
+            <span>Responsive layout (w-full max-w-full) ensuring document.scrollWidth &le; document.documentElement.clientWidth on 390px viewports.</span>
           </div>
         </div>
       </div>
 
-      {/* Controlled Fixture Spotlight Box: DEF-003 Broken Image */}
+      {/* DEF-003: BROKEN RESOURCE FIX (Replaced missing image path with local hero.png asset) */}
       <div className="glass-panel p-5 rounded-2xl border border-gray-800 flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="flex items-center space-x-4">
           <div className="w-16 h-16 rounded-xl bg-gray-900 border border-gray-800 flex items-center justify-center shrink-0 overflow-hidden">
-            {/* DEF-003: BROKEN IMAGE FIXTURE */}
             <img
               data-uiproof-fixture="broken-image"
-              src="/assets/uiproof-missing-demo-image.png"
-              alt="UIProof controlled broken resource"
+              src={heroImage}
+              alt="UIProof demo target hero feature"
               className="w-full h-full object-cover"
             />
           </div>
           <div>
-            <span className="text-xs font-mono text-amber-400 font-bold block mb-0.5">DEF-003 • BROKEN RESOURCE FIXTURE</span>
-            <h3 className="text-sm font-bold text-white">Controlled Missing Resource Test</h3>
-            <p className="text-xs text-gray-400">Intentionally broken image path while retaining valid alt tag.</p>
+            <span className="text-xs font-mono text-emerald-400 font-bold block mb-0.5">DEF-003 • RESOLVED RESOURCE FIXTURE</span>
+            <h3 className="text-sm font-bold text-white">Local Asset Image Feature</h3>
+            <p className="text-xs text-gray-400">Image successfully loads from local bundled asset (src/assets/hero.png) with meaningful alt attribute.</p>
           </div>
         </div>
       </div>
@@ -88,7 +86,6 @@ export const StoreView: React.FC<StoreViewProps> = ({ products, onAddToCart }) =
               <h2 className="text-base font-bold text-white">Catalog Filters</h2>
             </div>
 
-            {/* Restored normal text contrast (Fixes old DEF-003) */}
             <div className="mb-6 p-3 rounded-xl bg-gray-900 border border-gray-800">
               <p id="store-filter-header-subtext" className="text-xs font-medium text-gray-300">
                 Refine catalog selection by category and keyword search.
@@ -134,16 +131,16 @@ export const StoreView: React.FC<StoreViewProps> = ({ products, onAddToCart }) =
               </div>
             </div>
 
-            {/* DEF-004: UNLABELED INPUT FIXTURE */}
+            {/* DEF-004: UNLABELED INPUT FIX (Added explicit <label htmlFor="newsletter-email">) */}
             <div className="pt-4 border-t border-gray-800">
-              <span className="text-xs font-mono text-amber-400 font-bold block mb-2">
-                DEF-004 • UNLABELED INPUT FIXTURE
+              <span className="text-xs font-mono text-emerald-400 font-bold block mb-2">
+                DEF-004 • LABELED INPUT FIXTURE
               </span>
-              <p className="text-[11px] text-gray-400 mb-2">
+              <label htmlFor="newsletter-email" className="block text-[11px] text-gray-400 mb-2">
                 Subscribe to catalog updates:
-              </p>
-              {/* Intentionally NO label, aria-label, or aria-labelledby */}
+              </label>
               <input
+                id="newsletter-email"
                 data-uiproof-fixture="unlabeled-input"
                 type="email"
                 placeholder="Email address"

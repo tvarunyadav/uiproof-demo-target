@@ -8,7 +8,7 @@ import { CartDrawer } from './components/CartDrawer';
 import { INITIAL_PRODUCTS } from './data/products';
 import { DEFECTS_REGISTRY } from './data/defects';
 import type { Product, CartItem } from './types';
-import { ShieldCheck, Bug } from 'lucide-react';
+import { ShieldCheck, CheckCircle2 } from 'lucide-react';
 
 export function App() {
   const [activeTab, setActiveTab] = useState<'store' | 'analytics' | 'profile' | 'defects'>('store');
@@ -39,13 +39,13 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0b0f19] text-gray-100 flex flex-col font-sans selection:bg-indigo-500 selection:text-white">
-      {/* Top Warning Banner */}
-      <div className="bg-gradient-to-r from-red-950 via-amber-950 to-indigo-950 text-white text-xs py-2 px-4 border-b border-red-900/50 flex items-center justify-between shadow-md">
+    <div className="min-h-screen bg-[#0b0f19] text-gray-100 flex flex-col font-sans selection:bg-indigo-500 selection:text-white max-w-full">
+      {/* Top Banner */}
+      <div className="bg-gradient-to-r from-emerald-950 via-indigo-950 to-purple-950 text-white text-xs py-2 px-4 border-b border-emerald-900/50 flex items-center justify-between shadow-md">
         <div className="flex items-center space-x-2 max-w-7xl mx-auto w-full">
-          <Bug className="w-4 h-4 text-amber-400 animate-pulse shrink-0" />
+          <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
           <span>
-            <strong className="text-amber-300">DEMO TARGET APP:</strong> Intentionally contains controlled defects (9 active baseline defects) for UIProof AI test runs. <strong>Do NOT fix baseline defects yet.</strong>
+            <strong className="text-emerald-300">DEMO TARGET APP:</strong> Corrected Fixture Version — All 4 controlled baseline audit defects resolved for UIProof AI Retest verification.
           </span>
         </div>
       </div>
@@ -86,7 +86,7 @@ export function App() {
           <div className="flex items-center space-x-2">
             <ShieldCheck className="w-4 h-4 text-indigo-400" />
             <span className="font-semibold text-gray-300">UIProof AI Demo Target Suite</span>
-            <span>• Baseline Version 1.0</span>
+            <span>• Retest & Verified Version 2.0</span>
           </div>
 
           <div className="flex items-center space-x-4">

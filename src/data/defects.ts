@@ -8,10 +8,10 @@ export const DEFECTS_REGISTRY: DefectItem[] = [
     severity: 'Major',
     location: 'index.html',
     selector: 'head',
-    description: 'Document <head> contains a valid <title> tag but intentionally omits the <meta name="description"> tag.',
+    description: 'Status: RESOLVED — <meta name="description" content="..."> added to index.html <head>.',
     expectedCategory: 'UI-MISSING-META-DESKTOP / UI-MISSING-META-MOBILE',
-    howCreated: 'The meta description tag was omitted from the index.html file.',
-    expectedFix: 'Add <meta name="description" content="..."> to index.html <head>.'
+    howCreated: 'Originally omitted in baseline; restored in retest version.',
+    expectedFix: 'Verified — Meta description element present in DOM.'
   },
   {
     id: 'DEF-002',
@@ -20,10 +20,10 @@ export const DEFECTS_REGISTRY: DefectItem[] = [
     severity: 'Critical',
     location: 'Store Page -> Promotional Banner Container',
     selector: '[data-uiproof-fixture="mobile-overflow"]',
-    description: 'Element with data-uiproof-fixture="mobile-overflow" uses a fixed width of 480px. At desktop (1440px) it fits within container bounds, but at mobile (390px) it causes document.scrollWidth > 390px.',
+    description: 'Status: RESOLVED — Replaced fixed width (w-[480px]) with responsive container styling (w-full max-w-full), ensuring document.scrollWidth <= clientWidth at 390px viewport.',
     expectedCategory: 'UI-OVERFLOW-MOBILE',
-    howCreated: 'A child banner container in StoreView is given a fixed width (w-[480px]) exceeding the 390px mobile viewport.',
-    expectedFix: 'Change element width to responsive class w-full max-w-full.'
+    howCreated: 'Originally fixed width; converted to fluid responsive max-w-full container.',
+    expectedFix: 'Verified — Page fits within 390px mobile viewport.'
   },
   {
     id: 'DEF-003',
@@ -32,10 +32,10 @@ export const DEFECTS_REGISTRY: DefectItem[] = [
     severity: 'Major',
     location: 'Store Page -> Featured Product Fixture Banner',
     selector: '[data-uiproof-fixture="broken-image"]',
-    description: 'Image element points to non-existent URL /assets/uiproof-missing-demo-image.png while retaining a valid alt attribute.',
+    description: 'Status: RESOLVED — Replaced invalid missing image URL with bundled local asset src/assets/hero.png with alt="UIProof demo target hero feature".',
     expectedCategory: 'BROKEN_RESOURCE / broken image',
-    howCreated: '<img data-uiproof-fixture="broken-image" src="/assets/uiproof-missing-demo-image.png" alt="UIProof controlled broken resource" />',
-    expectedFix: 'Replace image src with a valid accessible image URL.'
+    howCreated: 'Originally missing image path; updated to load valid bundled local asset.',
+    expectedFix: 'Verified — Image asset loads cleanly without network 404 failure.'
   },
   {
     id: 'DEF-004',
@@ -44,9 +44,9 @@ export const DEFECTS_REGISTRY: DefectItem[] = [
     severity: 'Major',
     location: 'Store Sidebar -> Newsletter Subscription Input',
     selector: '[data-uiproof-fixture="unlabeled-input"]',
-    description: 'Input element contains placeholder text but intentionally has no associated <label>, aria-label, or aria-labelledby attributes.',
+    description: 'Status: RESOLVED — Associated input with explicit <label htmlFor="newsletter-email"> and matching input id.',
     expectedCategory: 'basic accessibility / unlabeled input',
-    howCreated: '<input data-uiproof-fixture="unlabeled-input" type="email" placeholder="Email address" />',
-    expectedFix: 'Add aria-label="Email address" or associate with a <label> element.'
+    howCreated: 'Originally missing label; associated with explicit <label> element.',
+    expectedFix: 'Verified — Accessible name computed from associated <label>.'
   }
 ];
